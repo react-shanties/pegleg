@@ -1,0 +1,44 @@
+import { Canvas, Meta, Controls, ArgTypes, Source } from '@storybook/blocks';
+
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+A button is an interactive element that signals the user can click. Use this for
+calls to action, and minimize the number of buttons on a given page.
+
+In regular HTML, the default type of a button is `submit`. This has unintended
+issues such as doing page navigations. Read more
+[here](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/button-has-type.md).
+Pegleg aims to provide a more common-sense approach, so we use a default `type="button"`.
+
+<Canvas of={ButtonStories.Primary} sourceState="shown" />
+
+If you need a `submit` button, you can absolutely pass a `type="submit"`
+
+<Canvas of={ButtonStories.Submit} sourceState="shown" />
+<Controls of={ButtonStories.Submit} include={['type']} />
+
+## Accessibility
+
+### Role
+
+By default, HTML `button`'s have the `role="button"`. This should not change, as
+semantically using a button for something other than a button is generally a bad
+user experience. Pegleg does not allow you to alter a button's role.
+
+### Label
+
+If you have a simple button with text children, the accessibility will pull the
+text content as the label. You can still override this via the `label` property.
+
+<Canvas of={ButtonStories.Primary} sourceState="shown" />
+
+<Canvas of={ButtonStories.LabelOverride} sourceState="shown" />
+
+If you use complex children in your button (anything that isn't a string), the
+`label` property is no longer optional and must be passed.
+
+<Canvas of={ButtonStories.ComplexChildren} sourceState="shown" />
